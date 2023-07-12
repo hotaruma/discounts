@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  php-cli:
+    build:
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        XDEBUG_VERSION: ${XDEBUG_VERSION}
+      context: ./docker/dev/php-cli
+    environment:
+      - PHP_IDE_CONFIG=serverName=${XDEBUG_STORM_SERVER_NAME}
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./:/app
+  php-fpm:
+    build:
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+        XDEBUG_VERSION: ${XDEBUG_VERSION}
+      context: ./docker/dev/php-fpm
+    volumes:
+      - ./:/app
+      - /var/tmp/${PROJECT_NAME}/php-fpm/log:/var/log/php-fpm
+      - /var/tmp/${PROJECT_NAME}/php-fpm/sessions:/usr/local/sessions
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./docker/dev/nginx/Dockerfile
+    volumes:
+      - ./:/app
+      - /var/tmp/${PROJECT_NAME}/nginx/log:/var/log/nginx

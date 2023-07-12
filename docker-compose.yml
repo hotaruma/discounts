@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  php-cli:
+    image: ${PROJECT_NAME}_php_cli:1.0
+    user: $UID:$GID
+  php-fpm:
+    image: ${PROJECT_NAME}_php_fpm:1.0
+    build:
+      args:
+        uid: $UID
+        gid: $GID
+  nginx:
+    image: ${PROJECT_NAME}_nginx:1.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - php-fpm

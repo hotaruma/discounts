@@ -1,0 +1,9 @@
+parameters:
+    treatPhpDocTypesAsCertain: false
+    level: max
+    paths:
+        - src
+        - tests
+        - benchmark
+    excludePaths:
+            - 'tests/Unit'

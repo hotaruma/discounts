@@ -1,0 +1,52 @@
+version: '3'
+
+tasks:
+  dev-config:
+    desc: "config"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml config
+  dev-build:
+    desc: "build"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml build --pull
+  dev-create:
+    desc: "create"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml create
+  dev-start:
+    desc: "start"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml start
+  dev-run:
+    desc: "dev-create dev-start"
+    cmds:
+      - task: dev-create
+      - task: dev-start
+  dev-init:
+    desc: "dev-down dev-build dev-run"
+    cmds:
+      - task: dev-down
+      - task: dev-build
+      - task: dev-run
+
+  dev-stop:
+    desc: "stop"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml stop
+  dev-down:
+    desc: "down"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml down
+
+  dev-sh-nginx:
+    desc: "exec sh"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml exec nginx /bin/sh
+  dev-sh-php-fpm:
+    desc: "exec sh"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml exec php-fpm /bin/sh
+  dev-sh-php-cli:
+    desc: "exec sh"
+    cmds:
+      - docker-compose -f docker-compose.yml -f ./docker/dev/docker-compose.yml run php-cli /bin/sh
