@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-use Hotaruma\HttpRouter\Enum\HttpMethod;
-use Hotaruma\HttpRouter\RouteDispatcher;
-use Hotaruma\HttpRouter\RouteMap;
+use Hotaruma\HttpRouter\{Enum\HttpMethod, RouteDispatcher, RouteMap};
 
 require_once __DIR__ . "/../vendor/autoload.php";
 

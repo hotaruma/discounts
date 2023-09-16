@@ -30,9 +30,13 @@
         "hotaruma/http-router": "^0.7",
         "hotaruma/pipeline": "^0.2.2",
         "monolog/monolog": "^3.4",
+        "react/event-loop": "^1.4",
         "symfony/cache": "^6.3",
         "symfony/console": "^6.3",
-        "symfony/dependency-injection": "^6.3"
+        "symfony/dependency-injection": "^6.3",
+      "ext-ev": "*",
+      "ext-sockets": "*",
+      "ext-curl": "*"
     },
     "require-dev": {
         "phpbench/phpbench": "^1.2",
